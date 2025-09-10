@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(45deg, #000000, #1e3a8a, #3b82f6);
+            --secondary-gradient: linear-gradient(45deg, #fafa2fff, #fbfb04ff);
+            --text-color: #1f2937;
+            --accent-color: #3b82f6;
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --navbar-bg: #000000;
+            --navbar-bg1: #ff0000ff;
+            --light-text: #f5f5f5;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f3f4f6;
+            overflow-x: hidden;
+            color: var(--text-color);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* Navbar */
+        .navbar {
+            background: var(--navbar-bg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+        .navbar-brand, .nav-link {
+            color: var(--light-text) !important;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand {
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+        }
+        .nav-link {
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--navbar-bg) !important;
+            background: var(--light-text);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        .navbar-toggler {
+            border: none;
+            color: var(--light-text);
+        }
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        /* Hero Section */
+        .hero {
+            background: var(--navbar-bg1);
+            background-size: 300% 300%;
+            animation: gradientMove 18s ease infinite;
+            color: var(--light-text);
+            padding: 50px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px; /* Adjusted for fixed navbar */
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Cpath d="M0 0h20v20H0z"/%3E%3Ccircle cx="10" cy="10" r="1.5"/%3E%3C/g%3E%3C/svg%3E');
+            opacity: 0.2;
+        }
+  .hero h1 {
+    font-size: 3.8rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    color: var(--light-text);
+
+    /* Text border */
+    -webkit-text-stroke: 2px black;  /* for Chrome, Safari, Edge */
+    text-stroke: 5px black;          /* future support */
+}
+
+.hero p {
+    font-size: 1.4rem;
+    max-width: 680px;
+    margin: 22px auto;
+    font-weight: 400;
+    line-height: 1.7;
+
+    /* New styles */
+ /* light blue */
+    color: #ffffff;            /* white text */
+    padding: 12px 18px;        /* space inside */
+    border-radius: 8px;        /* smooth corners */
+    text-align: center;        /* optional: centers text */
+}
+
+        .hero .btn {
+            background: var(--secondary-gradient);
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            padding: 14px 30px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            font-size: 1.05rem;
+        }
+        .hero .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+        }
+        .hero .btn:hover::after {
+            width: 280px;
+            height: 280px;
+        }
+        .hero .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        }
+        /* Cars Section */
+        .car-card {
+            background: #ffffff;
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+        }
+        .car-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .car-card img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+            transition: transform 0.3s ease;
+        }
+        .car-card:hover img {
+            transform: scale(1.04);
+        }
+        .car-placeholder {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            background-size: 300% 300%;
+            animation: gradientMove 10s ease infinite;
+            border-radius: 12px 12px 0 0;
+        }
+        .car-card.petrol { border-left: 4px solid #db2777; }
+        .car-card.petrol .car-placeholder { background: linear-gradient(45deg, #db2777, #f472b6); }
+        .car-card.diesel { border-left: 4px solid #4b5563; }
+        .car-card.diesel .car-placeholder { background: linear-gradient(45deg, #4b5563, #6b7280); }
+        .car-card.electric { border-left: 4px solid #2563eb; }
+        .car-card.electric .car-placeholder { background: linear-gradient(45deg, #2563eb, #60a5fa); }
+        .car-card .card-body {
+            padding: 20px;
+        }
+        .car-card .card-title {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.3;
+        }
+        .car-card .card-model {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        .car-card .fuel-type {
+            font-size: 0.85rem;
+            color: #fff;
+            background: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .car-card.petrol .fuel-type { background: #db2777; }
+        .car-card.diesel .fuel-type { background: #4b5563; }
+        .car-card.electric .fuel-type { background: #2563eb; }
+        .car-card .price-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        .car-card .price-item {
+            background: #f1f5f9;
+            padding: 8px 14px;
+            border-radius: 10px;
+            flex: 1;
+            text-align: center;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+        .car-card:hover .price-item {
+            background: #e2e8f0;
+        }
+        .car-card .btn {
+            background: var(--primary-gradient);
+            background-size: 300% 300%;
+            animation: gradientMove 8s ease infinite;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            padding: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .car-card .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+        }
+        .car-card .btn:hover::after {
+            width: 200px;
+            height: 200px;
+        }
+        .car-card .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        /* Contact Section */
+        .contact-section {
+            background: #000000;
+            padding: 30px 0;
+            position: relative;
+            color: var(--light-text);
+        }
+        .contact-section h2 {
+            color: var(--light-text);
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        .contact-info {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+        .contact-info .contact-item {
+            display: flex;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: var(--light-text);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .contact-info .contact-item:hover {
+            transform: translateY(-3px);
+            color: #ffffff;
+        }
+        .contact-info .contact-item i {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-right: 15px;
+            width: 40px;
+            text-align: center;
+        }
+        .contact-info .contact-item strong {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+        .contact-info .contact-item a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-info .contact-item a:hover {
+            color: var(--accent-color);
+        }
+        .contact-info .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            height: 100%;
+        }
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .row-cols-lg-3 { --bs-gutter-x: 1.5rem; }
+            .car-card img, .car-placeholder { height: 180px; }
+            .car-card .card-title { font-size: 1.5rem; }
+            .car-card .card-model { font-size: 0.95rem; }
+            .car-card .price-item { font-size: 0.85rem; }
+            .contact-section h2 { font-size: 2.2rem; }
+            .contact-info { padding: 15px; }
+            .contact-info .contact-item { font-size: 1.2rem; }
+            .contact-info .contact-item i { font-size: 1.6rem; }
+            .contact-info .map-container iframe { height: 300px; }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.1rem; }
+            .car-card img, .car-placeholder { height: 160px; }
+            .car-card .card-title { font-size: 1.4rem; }
+            .car-card .card-model { font-size: 0.9rem; }
+            .navbar-brand { font-size: 1.4rem; }
+            .nav-link { padding: 8px 12px; font-size: 0.95rem; }
+            .contact-info .contact-item { font-size: 1.2rem; }
+            .contact-info .contact-item i { font-size: 1.6rem; }
+            .contact-info .map-container iframe { height: 300px; }
+        }
+        @media (max-width: 576px) {
+            .hero { padding: 80px 0; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .car-card .price-info { flex-direction: column; gap: 8px; }
+            .car-card .price-item { width: 100%; }
+            .navbar-brand { font-size: 1.2rem; }
+            .nav-link { padding: 6px 10px; }
+            .contact-section h2 { font-size: 1.8rem; }
+            .contact-info .contact-item { font-size: 1.1rem; }
+            .contact-info .contact-item i { font-size: 1.4rem; }
+            .contact-info .map-container iframe { height: 250px; }
+        }
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="70">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand animate__animated animate__fadeInLeft" href="#home">Car Rental</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeInRight animate__delay-1s" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeInRight animate__delay-2s" href="#cars">Cars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeInRight animate__delay-3s" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Intro Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Premium Car Hire in Cairns</h1>
+            <p>Discover top-quality car rentals in Cairns, Brisbane, and across Australia. Start your journey today with reliable, affordable, and hassle-free service.</p>
+            <a href="#cars" class="btn btn-lg">View Our Cars</a>
+        </div>
+    </section>
+
+    <!-- Cars Section -->
+    <section id="cars" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Premium Fleet</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                {% for car in cars %}
+                    <div class="col">
+                        <div class="car-card {{ car.fuel_type }}">
+                            {% if car.photo %}
+                                <img src="{{ car.photo.url }}" class="card-img-top" alt="{{ car.name }} {{ car.model }}">
+                            {% else %}
+                                <div class="car-placeholder">
+                                    {{ car.name }} {{ car.model }}
+                                </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ car.name }}</h5>
+                                <p class="card-model">{{ car.model }}</p>
+                                <p class="fuel-type">Fuel Type: {{ car.fuel_type|title }}</p>
+                                <div class="price-info">
+                                    {% if car.price_per_week %}
+                                        <div class="price-item">
+                                            <strong>Week:</strong> ${{ car.price_per_week }}
+                                        </div>
+                                    {% endif %}
+                                    {% if car.price_per_month %}
+                                        <div class="price-item">
+                                            <strong>Month:</strong> ${{ car.price_per_month }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <a href="#contact" class="btn btn-primary w-100">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12 text-center">
+                        <p>No cars available yet.</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="text-center mb-5">Call Us To Book Now</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="bi bi-person-fill"></i>
+                            <strong>Name:</strong> Sagar Sirajul
+                        </div>
+                        <div class="contact-item">
+                            <i class="bi bi-envelope-fill"></i>
+                            <strong>Email:</strong> <a href="mailto:info@carrental.com">info@carrental.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="bi bi-whatsapp"></i>
+                            <strong>WhatsApp:</strong> <a href="https://wa.me/+11234567890">+1-123-456-7890</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="bi bi-telephone-fill"></i>
+                            <strong>Phone:</strong> <a href="tel:+11234567890">+1-123-456-7890</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244346.0918280986!2d145.55213109025635!3d-16.880460583347762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x697862555ba22413%3A0x400eef17f207860!2sCairns%20QLD%2C%20Australia!5e0!3m2!1sen!2sbd!4v1757511355518!5m2!1sen!2sbd" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // Initialize Bootstrap ScrollSpy
+        const scrollSpy = new bootstrap.ScrollSpy(document.body, {
+            target: '#navbarNav',
+            offset: 70
+        });
+
+        // Custom scroll event to ensure smooth section detection
+        window.addEventListener('scroll', () => {
+            const sections = ['home', 'cars', 'contact'];
+            let current = '';
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        current = section;
+                    }
+                }
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
